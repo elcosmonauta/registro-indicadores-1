@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: Indicadores API
+  description: API para obtener los indicadores almacenados en MongoDB.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+paths:
+  /obtener-indicadores:
+    get:
+      operationId: obtenerIndicadores
+      summary: Obtener todos los indicadores registrados.
+      responses:
+        '200':
+          description: Lista de indicadores obtenidos exitosamente.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    userId:
+                      type: string
+                      description: Identificador único del usuario.
+                    tiempoUso:
+                      type: number
+                      description: Tiempo total de uso (en minutos).
+                    fechaHora:
+                      type: string
+                      format: date-time
+                      description: Fecha y hora de la interacción.
+                    frecuencia:
+                      type: number
+                      description: Frecuencia de uso.
+        '500':
+          description: Error al obtener los indicadores.
